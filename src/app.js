@@ -78,15 +78,32 @@ function initDOM() {
 }
 
 /**
- * Apply Skin tone to emoji if supported
+ * Apply Skin tone to emoji correctly according to Unicode standard (UTS #51)
  */
 function applySkinTone(emojiChar, skinTone) {
   if (!skinTone) return emojiChar;
   const item = emojiByChar.get(emojiChar);
-  if (item && item.skinTone) {
-    return emojiChar + skinTone;
+  if (!item || !item.skinTone) return emojiChar;
+
+  // Clean any previous skin tone modifier
+  const clean = emojiChar.replace(/[\u{1F3FB}-\u{1F3FF}]/gu, '');
+
+  // For ZWJ (Zero Width Joiner) sequences like 👨‍🍳, 👩‍🏫, 🧜‍♀️, 🏃‍♀️, 🧑‍🤝‍🧑:
+  // The skin tone modifier must be placed after the person base and BEFORE the ZWJ (\u200D)
+  if (clean.includes('\u200D')) {
+    const parts = clean.split('\u200D');
+    const newParts = parts.map((part, idx) => {
+      // Apply tone to the first character or to subsequent human base characters
+      if (idx === 0 || part === '🧑' || part === '👨' || part === '👩') {
+        return part.replace(/\uFE0F/g, '') + skinTone;
+      }
+      return part;
+    });
+    return newParts.join('\u200D');
   }
-  return emojiChar;
+
+  // For simple emojis, remove \uFE0F (Variation Selector 16) if present, then append modifier
+  return clean.replace(/\uFE0F/g, '') + skinTone;
 }
 
 /**
