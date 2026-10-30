@@ -97,19 +97,19 @@ export default function Header({
         {/* Header Actions */}
         <div className="header-actions">
           {/* Skin Tone Selector */}
-          <div className="skin-tone-group" title="Chọn màu da tay &amp; cử chỉ">
+          <div className="skin-tone-group" title="Chọn màu da tay & cử chỉ">
             <span className="skin-tone-label">Màu da:</span>
             <div className="tone-options">
               {SKIN_TONES.map((tone) => (
                 <button
                   key={tone.label}
                   type="button"
-                  className={`tone-btn ${skinTone === tone.value ? 'active' : ''}`}
+                  className={`tone-circle-btn ${skinTone === tone.value ? 'active' : ''}`}
                   onClick={() => setSkinTone(tone.value)}
                   title={tone.label}
-                >
-                  {tone.symbol}
-                </button>
+                  style={{ backgroundColor: tone.color }}
+                  aria-label={tone.label}
+                />
               ))}
             </div>
           </div>
@@ -153,3 +153,4 @@ export default function Header({
     </header>
   );
 }
+

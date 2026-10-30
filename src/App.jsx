@@ -17,14 +17,17 @@ const STORAGE_KEYS = {
   SOUND: 'fb_emoji_sound_react_v1',
   TRAY_OPEN: 'fb_emoji_tray_open_react_v1',
   TRAY_ITEMS: 'fb_emoji_tray_items_react_v1',
-  SIDEBAR_COLLAPSED: 'fb_emoji_sidebar_collapsed_react_v1'
+  SIDEBAR_COLLAPSED: 'fb_emoji_sidebar_collapsed_react_v1',
+  SKIN_TONE: 'fb_emoji_skin_tone_react_v1'
 };
 
 export default function App() {
   // State
   const [activeCategory, setActiveCategory] = useState('fb_hot');
   const [searchQuery, setSearchQuery] = useState('');
-  const [skinTone, setSkinTone] = useState('');
+  const [skinTone, setSkinTone] = useState(() => {
+    return localStorage.getItem('fb_emoji_skin_tone_react_v1') || '';
+  });
 
   const [favorites, setFavorites] = useState(() => {
     try {
@@ -88,6 +91,10 @@ export default function App() {
   useEffect(() => {
     localStorage.setItem(STORAGE_KEYS.SIDEBAR_COLLAPSED, isSidebarCollapsed);
   }, [isSidebarCollapsed]);
+
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEYS.SKIN_TONE, skinTone);
+  }, [skinTone]);
 
   useEffect(() => {
     localStorage.setItem(STORAGE_KEYS.THEME, theme);
@@ -342,3 +349,4 @@ export default function App() {
     </div>
   );
 }
+

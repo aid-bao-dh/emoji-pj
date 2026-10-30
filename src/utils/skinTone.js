@@ -3,12 +3,12 @@
  */
 
 export const SKIN_TONES = [
-  { label: 'Mặc định', value: '', symbol: '🟡' },
-  { label: 'Sáng', value: '\u{1F3FB}', symbol: '🏻' },
-  { label: 'Sáng vừa', value: '\u{1F3FC}', symbol: '🏼' },
-  { label: 'Trung bình', value: '\u{1F3FD}', symbol: '🏽' },
-  { label: 'Ngăm đen', value: '\u{1F3FE}', symbol: '🏾' },
-  { label: 'Tối màu', value: '\u{1F3FF}', symbol: '🏿' }
+  { label: 'Mặc định (Vàng)', value: '', color: '#FFC83D' },
+  { label: 'Sáng', value: '\u{1F3FB}', color: '#FADCBC' },
+  { label: 'Sáng vừa', value: '\u{1F3FC}', color: '#E0BB95' },
+  { label: 'Trung bình', value: '\u{1F3FD}', color: '#BF8F68' },
+  { label: 'Ngăm đen', value: '\u{1F3FE}', color: '#9B643D' },
+  { label: 'Tối màu', value: '\u{1F3FF}', color: '#594539' }
 ];
 
 export function applySkinTone(emojiChar, skinTone, emojiMap) {
