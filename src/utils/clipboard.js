@@ -1,8 +1,7 @@
 /**
- * Clipboard & Toast Notification Utilities
+ * Clipboard & Audio Feedback Utilities
  */
 
-// Audio feedback using Web Audio API (zero external assets required)
 let audioCtx = null;
 let soundEnabled = true;
 
@@ -48,13 +47,10 @@ export function playCopySound() {
     osc.start(now);
     osc.stop(now + 0.08);
   } catch (e) {
-    // Ignore audio errors on un-interacted documents
+    // Audio context may be restricted before user gesture
   }
 }
 
-/**
- * Copies text to clipboard with modern API and fallback
- */
 export async function copyToClipboard(text) {
   if (!text) return false;
 
@@ -68,7 +64,6 @@ export async function copyToClipboard(text) {
     console.warn('Navigator clipboard failed, using fallback', err);
   }
 
-  // Fallback for older browsers or non-https contexts
   try {
     const textarea = document.createElement('textarea');
     textarea.value = text;
@@ -90,46 +85,3 @@ export async function copyToClipboard(text) {
 
   return false;
 }
-
-/**
- * Toast notification manager
- */
-let toastContainer = null;
-
-function ensureToastContainer() {
-  if (!toastContainer) {
-    toastContainer = document.createElement('div');
-    toastContainer.className = 'toast-container';
-    toastContainer.setAttribute('aria-live', 'polite');
-    document.body.appendChild(toastContainer);
-  }
-  return toastContainer;
-}
-
-export function showToast(message, emoji = '📋', duration = 2200) {
-  const container = ensureToastContainer();
-
-  const toast = document.createElement('div');
-  toast.className = 'toast-item';
-  toast.innerHTML = `
-    <span class="toast-emoji">${emoji}</span>
-    <span class="toast-text">${message}</span>
-  `;
-
-  container.appendChild(toast);
-
-  // Trigger enter animation
-  requestAnimationFrame(() => {
-    toast.classList.add('toast-show');
-  });
-
-  // Auto-dismiss
-  setTimeout(() => {
-    toast.classList.remove('toast-show');
-    toast.classList.add('toast-hide');
-    toast.addEventListener('transitionend', () => {
-      toast.remove();
-    }, { once: true });
-  }, duration);
-}
-
