@@ -1,0 +1,29 @@
+{
+  "name": "fb-emoji-fast-copy",
+  "version": "1.0.0",
+  "description": "Bộ Emoji Facebook Đầy Đủ Nhất - Tìm kiếm siêu tốc tiếng Việt & Copy 1-chạm",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "start": "vite --open",
+    "build": "vite build",
+    "preview": "vite preview",
+    "generate-data": "node scripts/build-emoji-data.js"
+  },
+  "keywords": [
+    "facebook",
+    "emoji",
+    "copy",
+    "vietnamese-search",
+    "unicode"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "emojilib": "^4.0.2",
+    "unicode-emoji-json": "^0.6.0"
+  },
+  "devDependencies": {
+    "vite": "^6.2.0"
+  }
+}
