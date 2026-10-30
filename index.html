@@ -1,18 +1,23 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="vi">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Kho Emoji Facebook Đầy Đủ Nhất | Tìm Kiếm Siêu Tốc & Copy 1-Chạm</title>
-    <meta name="description" content="Bộ sưu tập đầy đủ 2000+ Emoji Facebook, icon bán hàng, gạch đầu dòng, mũi tên CTA, ký tự đặc biệt hỗ trợ viết post nhanh chóng. Tìm kiếm tiếng Việt không dấu, copy 1 chạm." />
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔥</text></svg>" />
-    <link rel="stylesheet" href="./src/styles/main.css" />
-  </head>
-  <body>
-    <div class="app-container">
-      <!-- Header -->
-      <header class="app-header">
-        <div class="header-top">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kho Emoji Facebook Đầy Đủ Nhất | Tìm Kiếm Siêu Tốc & Copy 1-Chạm</title>
+  <meta name="description" content="Bộ sưu tập đầy đủ 2000+ Emoji Facebook, icon bán hàng, gạch đầu dòng, mũi tên CTA, ký tự đặc biệt hỗ trợ viết post nhanh chóng. Tìm kiếm tiếng Việt không dấu, copy 1 chạm.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔥</text></svg>">
+  <link rel="stylesheet" href="./src/styles/main.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="header-top">
+        <div class="header-left">
+          <!-- Sidebar Toggle (Menu) Button -->
+          <button id="sidebarToggleBtn" class="btn-sidebar-toggle" title="Thu gọn / Mở rộng menu">
+            <span class="toggle-icon">☰</span>
+          </button>
           <a href="#" class="brand" title="Kho Emoji Facebook Đầy Đủ">
             <div class="brand-icon">🔥</div>
             <div class="brand-info">
@@ -20,47 +25,64 @@
               <p class="brand-desc">Bộ emoji Facebook đầy đủ • Tìm kiếm & Copy siêu tốc</p>
             </div>
           </a>
-
-          <!-- Fast Search Bar -->
-          <div class="search-wrapper">
-            <span class="search-icon">🔍</span>
-            <input type="text" id="searchInput" class="search-input" placeholder="Tìm emoji theo tiếng Việt hoặc tiếng Anh (lửa, tích xanh, tim, sao, mũi tên, phone, sale...)" autocomplete="off" spellcheck="false" />
-            <span class="search-shortcut" title="Phím tắt tìm kiếm">⌘K / /</span>
-            <button id="searchClearBtn" class="search-clear-btn" title="Xoá tìm kiếm">✕</button>
-          </div>
-
-          <!-- Header Actions -->
-          <div class="header-actions">
-            <!-- Copy Multi Tray Toggle -->
-            <button id="toggleTrayBtn" class="btn-tray-toggle" title="Bật/Tắt Khay gom nhiều emoji cùng lúc">
-              <span>🧺 Khay Copy</span>
-              <span id="trayCountBadge" class="tray-count-badge" style="display:none;">0</span>
-            </button>
-
-            <!-- Sound Feedback Toggle -->
-            <button id="soundToggleBtn" class="btn-icon" title="Bật/Tắt âm thanh click">🔊</button>
-
-            <!-- Dark/Light Theme Toggle -->
-            <button id="themeToggleBtn" class="btn-icon" title="Chuyển chế độ Sáng / Tối">🌙</button>
-          </div>
         </div>
 
-        <!-- Category Navigation Tabs -->
-        <nav class="category-nav-wrapper">
-          <div id="categoryNav" class="category-nav"></div>
-        </nav>
+        <!-- Fast Search Bar -->
+        <div class="search-wrapper">
+          <span class="search-icon">🔍</span>
+          <input 
+            type="text" 
+            id="searchInput" 
+            class="search-input" 
+            placeholder="Tìm emoji theo tiếng Việt hoặc tiếng Anh (lửa, tích xanh, tim, sao, mũi tên, phone, sale...)" 
+            autocomplete="off"
+            spellcheck="false"
+          >
+          <span class="search-shortcut" title="Phím tắt tìm kiếm">⌘K / /</span>
+          <button id="searchClearBtn" class="search-clear-btn" title="Xoá tìm kiếm">✕</button>
+        </div>
 
-        <!-- Sub-bar: Skin Tone & Quick Stats -->
-        <div class="sub-header-bar">
-          <div class="skin-tone-group">
-            <span class="sub-bar-label">Màu da tay & cử chỉ:</span>
+        <!-- Header Actions -->
+        <div class="header-actions">
+          <!-- Skin tone selector in header -->
+          <div class="skin-tone-group" title="Chọn màu da tay & cử chỉ">
+            <span class="skin-tone-label">Màu da:</span>
             <div id="skinToneOptions" class="tone-options"></div>
           </div>
-          <div class="quick-tip">💡 <em>Mẹo: Click vào bất kỳ emoji nào để copy ngay lập tức!</em></div>
-        </div>
-      </header>
 
-      <!-- Main Content Area -->
+          <!-- Copy Multi Tray Toggle -->
+          <button id="toggleTrayBtn" class="btn-tray-toggle" title="Bật/Tắt Khay gom nhiều emoji cùng lúc">
+            <span>🧺 Khay Copy</span>
+            <span id="trayCountBadge" class="tray-count-badge" style="display:none;">0</span>
+          </button>
+
+          <!-- Sound Feedback Toggle -->
+          <button id="soundToggleBtn" class="btn-icon" title="Bật/Tắt âm thanh click">
+            🔊
+          </button>
+
+          <!-- Dark/Light Theme Toggle -->
+          <button id="themeToggleBtn" class="btn-icon" title="Chuyển chế độ Sáng / Tối">
+            🌙
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- App Body: Sidebar + Main Content -->
+    <div class="app-layout">
+      <!-- Collapsible Vertical Sidebar -->
+      <aside id="categorySidebar" class="category-sidebar">
+        <div class="sidebar-header">
+          <span class="sidebar-heading">Danh Mục</span>
+          <button id="collapseSidebarBtn" class="btn-collapse-sidebar" title="Thu gọn menu">
+            <span id="collapseIcon">◀</span>
+          </button>
+        </div>
+        <nav id="categoryNav" class="sidebar-nav"></nav>
+      </aside>
+
+      <!-- Main Emoji Explorer Area -->
       <main class="app-main">
         <!-- Search status bar -->
         <div id="searchStatusText" class="search-meta-bar" style="display:none;">
@@ -71,27 +93,32 @@
         <!-- Emoji Category Sections -->
         <div id="emojiSectionsContainer" class="emoji-sections-container"></div>
       </main>
+    </div>
 
-      <!-- Floating Emoji Basket / Multi-Copy Tray (Bottom Bar) -->
-      <div id="emojiTray" class="emoji-tray collapsed">
-        <div class="tray-inner">
-          <div class="tray-header-mini">
-            <span class="tray-title">🧺 Khay Gom Emoji Đang Chọn:</span>
-            <button id="closeTrayBtn" class="tray-close-btn" title="Đóng khay">✕</button>
+    <!-- Floating Emoji Basket / Multi-Copy Tray (Bottom Bar) -->
+    <div id="emojiTray" class="emoji-tray collapsed">
+      <div class="tray-inner">
+        <div class="tray-header-mini">
+          <span class="tray-title">🧺 Khay Gom Emoji Đang Chọn:</span>
+          <button id="closeTrayBtn" class="tray-close-btn" title="Đóng khay">✕</button>
+        </div>
+        <div class="tray-content">
+          <div id="trayEmojis" class="tray-emojis-list">
+            <span class="tray-placeholder">Click vào emoji bất kỳ để thêm vào đây...</span>
           </div>
-          <div class="tray-content">
-            <div id="trayEmojis" class="tray-emojis-list">
-              <span class="tray-placeholder">Click vào emoji bất kỳ để thêm vào đây...</span>
-            </div>
-            <div class="tray-actions">
-              <button id="copyTrayBtn" class="btn-copy-tray" title="Sao chép toàn bộ emoji trong khay">📋 Sao Chép Khay</button>
-              <button id="clearTrayBtn" class="btn-clear-tray" title="Xoá làm sạch khay">🧹 Xoá</button>
-            </div>
+          <div class="tray-actions">
+            <button id="copyTrayBtn" class="btn-copy-tray" title="Sao chép toàn bộ emoji trong khay">
+              📋 Sao Chép Khay
+            </button>
+            <button id="clearTrayBtn" class="btn-clear-tray" title="Xoá làm sạch khay">
+              🧹 Xoá
+            </button>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <script type="module" src="./src/app.js"></script>
-  </body>
+  <script type="module" src="./src/app.js"></script>
+</body>
 </html>
