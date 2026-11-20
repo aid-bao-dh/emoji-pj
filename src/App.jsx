@@ -26,7 +26,7 @@ export default function App() {
   const [activeCategory, setActiveCategory] = useState('fb_hot');
   const [searchQuery, setSearchQuery] = useState('');
   const [skinTone, setSkinTone] = useState(() => {
-    return localStorage.getItem('fb_emoji_skin_tone_react_v1') || '';
+    return localStorage.getItem(STORAGE_KEYS.SKIN_TONE) || '';
   });
 
   const [favorites, setFavorites] = useState(() => {
@@ -69,6 +69,7 @@ export default function App() {
     return localStorage.getItem(STORAGE_KEYS.SOUND) !== 'false';
   });
 
+  const [showScrollTop, setShowScrollTop] = useState(false);
   const [toasts, setToasts] = useState([]);
 
   // Sync state to LocalStorage
@@ -105,6 +106,15 @@ export default function App() {
     localStorage.setItem(STORAGE_KEYS.SOUND, sound);
     toggleSound(sound);
   }, [sound]);
+
+  // Scroll listener for back to top button
+  useEffect(() => {
+    function handleScroll() {
+      setShowScrollTop(window.scrollY > 350);
+    }
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Toast helper
   const showToast = useCallback((message, emoji = '📋') => {
@@ -259,17 +269,20 @@ export default function App() {
     [showToast]
   );
 
-  const handleCopyTray = useCallback(async () => {
-    if (trayItems.length === 0) {
-      showToast('Khay đang trống!', '⚠️');
-      return;
-    }
-    const combined = trayItems.join('');
-    const success = await copyToClipboard(combined);
-    if (success) {
-      showToast(`Đã sao chép chuỗi emoji: ${combined}`, '📋');
-    }
-  }, [trayItems, showToast]);
+  const handleCopyTray = useCallback(
+    async (withSpaces = false) => {
+      if (trayItems.length === 0) {
+        showToast('Khay đang trống!', '⚠️');
+        return;
+      }
+      const combined = withSpaces ? trayItems.join(' ') : trayItems.join('');
+      const success = await copyToClipboard(combined);
+      if (success) {
+        showToast(`Đã sao chép chuỗi emoji: ${combined}`, '📋');
+      }
+    },
+    [trayItems, showToast]
+  );
 
   const handleClearTray = useCallback(() => {
     setTrayItems([]);
@@ -278,6 +291,10 @@ export default function App() {
 
   const handleRemoveTrayItem = useCallback((index) => {
     setTrayItems((prev) => prev.filter((_, i) => i !== index));
+  }, []);
+
+  const handleRemoveLastTrayItem = useCallback(() => {
+    setTrayItems((prev) => prev.slice(0, -1));
   }, []);
 
   return (
@@ -314,6 +331,15 @@ export default function App() {
           onToggleCollapse={() => setIsSidebarCollapsed((prev) => !prev)}
         />
 
+        {/* Mobile backdrop overlay */}
+        {!isSidebarCollapsed && (
+          <div
+            className="sidebar-backdrop"
+            onClick={() => setIsSidebarCollapsed(true)}
+            aria-hidden="true"
+          />
+        )}
+
         <main className="app-main">
           <EmojiGrid
             activeCategory={activeCategory}
@@ -340,13 +366,26 @@ export default function App() {
         trayItems={trayItems}
         onClose={() => setIsTrayOpen(false)}
         onRemoveItem={handleRemoveTrayItem}
+        onRemoveLast={handleRemoveLastTrayItem}
         onClear={handleClearTray}
         onCopyTray={handleCopyTray}
       />
+
+      {/* Back to Top Button */}
+      {showScrollTop && (
+        <button
+          type="button"
+          className="btn-back-to-top"
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          title="Cuộn lên đầu trang"
+          aria-label="Cuộn lên đầu trang"
+        >
+          ↑
+        </button>
+      )}
 
       {/* Floating Toast Notifications */}
       <Toast toasts={toasts} />
     </div>
   );
 }
-

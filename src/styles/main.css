@@ -698,6 +698,36 @@ body {
   transform: translateY(0) scale(0.96);
 }
 
+.emoji-card.copied {
+  border-color: #22c55e !important;
+  transform: scale(0.94);
+  background-color: var(--primary-light);
+}
+
+.copied-badge {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  background: #22c55e;
+  color: #ffffff;
+  border-radius: var(--radius-full);
+  width: 16px;
+  height: 16px;
+  font-size: 10px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  animation: popBadge 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  pointer-events: none;
+}
+
+@keyframes popBadge {
+  0% { transform: scale(0); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
 /* Star fav button on card hover */
 .fav-btn {
   position: absolute;
@@ -929,6 +959,90 @@ body {
 
 .btn-clear-tray:hover {
   background: var(--bg-active);
+}
+
+.btn-undo-tray {
+  padding: 10px 14px;
+  background: var(--bg-hover);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  border-radius: var(--radius-md);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all var(--transition-fast);
+}
+
+.btn-undo-tray:hover {
+  background: var(--bg-active);
+}
+
+.tray-space-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  user-select: none;
+}
+
+.tray-space-toggle input {
+  cursor: pointer;
+  accent-color: var(--primary);
+}
+
+/* Floating Back to Top Button */
+.btn-back-to-top {
+  position: fixed;
+  bottom: 84px;
+  right: 24px;
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-full);
+  background: var(--primary);
+  color: #ffffff;
+  border: none;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 998;
+  transition: all var(--transition-fast);
+  animation: fadeIn 0.2s ease;
+}
+
+.btn-back-to-top:hover {
+  background: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Mobile Sidebar Backdrop */
+.sidebar-backdrop {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .sidebar-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(2px);
+    z-index: 490;
+    animation: fadeIn 0.2s ease;
+  }
 }
 
 /* Toast Notifications */

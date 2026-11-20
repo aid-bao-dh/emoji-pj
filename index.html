@@ -6,6 +6,16 @@
   <title>FB Emoji Pro - Kho Emoji Facebook Đầy Đủ & Copy Siêu Tốc</title>
   <meta name="description" content="Bộ sưu tập đầy đủ 2000+ Emoji Facebook, icon bán hàng, gạch đầu dòng, mũi tên CTA, ký tự đặc biệt hỗ trợ viết post nhanh chóng. Tìm kiếm tiếng Việt không dấu, copy 1 chạm.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔥</text></svg>">
+  <script>
+    try {
+      const theme = localStorage.getItem('fb_emoji_theme_react_v1');
+      if (theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+      } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    } catch (e) {}
+  </script>
 </head>
 <body>
   <div id="root"></div>
