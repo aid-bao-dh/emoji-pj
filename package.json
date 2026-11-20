@@ -8,7 +8,9 @@
     "start": "vite --open",
     "build": "vite build",
     "preview": "vite preview",
-    "generate-data": "node scripts/build-emoji-data.js"
+    "generate-data": "node scripts/build-emoji-data.js",
+    "test": "node scripts/test-audit.js",
+    "audit": "node scripts/test-audit.js"
   },
   "keywords": [
     "facebook",
